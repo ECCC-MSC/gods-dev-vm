@@ -10,7 +10,7 @@ The VM created will contain the following software:
 * Latest GDAL version available on [unbuntugis-unstable](https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable).
 * Latest MapServer version available on [unbuntugis-unstable](https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable).
 * Latest [GDAL python bindings](https://pypi.org/project/GDAL/) available via PYPI.
-* Latest Elasticsearch `7.x` version from Elasticsearch [APT respository](https://www.elastic.co/guide/en/Elasticsearch/reference/current/deb.html#deb-repo).
+* Latest Elasticsearch `7.x` version from Elasticsearch [APT repository](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo).
 
 ## Installation Guide
 ### Download Vagrant and VirtualBox
@@ -18,6 +18,11 @@ In order to setup the VM, you will need to download the following software for
 the operating system of your choice:
 * [Vagrant](https://www.vagrantup.com/downloads.html)
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+
+#### Mac OS X
+- compatible versions of Vagrant are required.  Below are working combinations:
+  - Vagrant 2.2.7 and VirtualBox 6.1
+
 ### Setup
 The following steps will get you started with your development environment.
 #### Get Vagrantfile
@@ -77,31 +82,29 @@ You should now be connected to your VM via SSH.
 ### Using the shared folder
 Using the shared folder allows you to easily access files between your local
 computer and the VM. When running `vagrant up` for the first time, a `shared`
-folder is also created in the same directory as the Vagrantfile. This folder
-is also available at `/home/vagrant/shared` on your VM. It is a good idea
-to clone any repositories in this directory as it will allow you to access
-them from your favourite IDE on your local computer.
-### Basic Vagrant commands
-To turn your VM on:
-```
-vagrant up
-```
+folder is also created in the same directory as the Vagrantfile which is made
+available on the VM at `/home/vagrant/shared`..
 
-To pause your VM:
-```
+It is a good idea to clone any repositories in this directory as it will allow
+you to access them from your favourite IDE on your local computer.
+
+### Basic Vagrant commands
+```bash
+# turn on VM
+vagrant up
+
+# pause VM
 vagrant suspend
-```
-To turn off your VM:
-```
+
+# turn off VM
 vagrant halt
-```
-To destroy the VM:
-```
+
+# destroy VM
 vagrant destroy
-```
-To rerun the initial provisioning (**be careful!**):
-```
+
+# rerun the initial provisioning careful!
 vagrant provision
 ```
+
 For more information on using the Vagrant CLI, please read the
 [Vagrant CLI documentation](https://www.vagrantup.com/docs/cli/)

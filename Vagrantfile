@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
 	config.vm.network "forwarded_port", guest: 9200, host: 9201, id: "elasticsearch"
 	config.vm.synced_folder "shared/", "/home/vagrant/shared", create: true
 	config.vm.provider "virtualbox" do |v|
+	        v.name = "msc-gods-dev-vm"
 		v.memory = 2048
 		v.cpus = 2
 	end
@@ -15,17 +16,19 @@ Vagrant.configure("2") do |config|
 config.vm.provision "shell", inline: <<-SHELL
 	echo "*** adding ubuntugis ppa and updating package lists ***"
 	add-apt-repository ppa:ubuntugis/ubuntugis-unstable
-    apt-get update
+	apt-get update
 	echo "*** installing git ***"
-    apt-get install -y git
+	apt-get install -y git
+	echo "*** installing vim tools ***"
+	apt-get install -y vim vim-common vim-runtime vim-tiny
 	echo "*** installing gdal ***"
 	sudo apt-get install -y gdal-bin
 	apt-get install -y libgdal-dev
 	export CPLUS_INCLUDE_PATH=/usr/include/gdal
 	export C_INCLUDE_PATH=/usr/include/gdal
 	echo "*** installing python3-pip and pylint3 ***"
-    apt-get install -y python3-pip
-    apt-get install -y pylint3
+	apt-get install -y python3-pip
+	apt-get install -y pylint3
 	echo " *** install GDAL python bindings ***"
 	pip3 install GDAL
 	echo "*** installing mapserver ***"
