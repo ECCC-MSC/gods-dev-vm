@@ -25,6 +25,20 @@ Either clone this directory or download the Vagrantfile to your computer.
 Place the Vagrantfile inside a local directory of your choosing
 (i.e. `~/devel/gods-dev-vm/`).
 ### Booting up the VM
+Prior to booting the VM, you may want to edit the Vagrantfile in your
+favourite text editor to modify the initial amount of CPUs and memory (RAM)
+used by your machine. To change these values, open the file and look for:
+```
+config.vm.provider "virtualbox" do |v|
+	v.memory = 2048
+	v.cpus = 2
+```
+Modify the existing values to suit your needs based off of your existing
+hardware.
+
+**IMPORTANT: In many cases, 1024 MB of memory is insufficient
+for ElasticSearch to run properly in the VM. Please consider providing at
+minimum 2048 MB of memory to your VM**.
 #### Linux / Mac OS X
 Open up a Terminal and `cd` into the local directory you chose above.
 Run `vagrant up`. This will start up the VM for the first time and run through
