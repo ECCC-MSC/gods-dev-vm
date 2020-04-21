@@ -7,10 +7,10 @@ machine (VM) that closely resembles the existing architecture used to deploy
 many of our applications.
 
 The VM created will contain the following software:
-* Latest GDAL version available on [unbuntugis-unstable](https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable).
-* Latest MapServer version available on [unbuntugis-unstable](https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable).
-* Latest [GDAL python bindings](https://pypi.org/project/GDAL/) available via PYPI.
-* Latest Elasticsearch `7.x` version from Elasticsearch [APT repository](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo).
+* Latest GDAL version available on [unbuntugis-unstable](https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable)
+* Latest MapServer version available on [unbuntugis-unstable](https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable)
+* Latest [GDAL Python bindings](https://pypi.org/project/GDAL/) available via PyPI
+* Latest Elasticsearch `7.x` version from Elasticsearch [APT repository](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo)
 
 ## Installation Guide
 ### Download Vagrant and VirtualBox
@@ -83,7 +83,7 @@ You should now be connected to your VM via SSH.
 Using the shared folder allows you to easily access files between your local
 computer and the VM. When running `vagrant up` for the first time, a `shared`
 folder is also created in the same directory as the Vagrantfile which is made
-available on the VM at `/home/vagrant/shared`..
+available on the VM at `/home/vagrant/shared`.
 
 It is a good idea to clone any repositories in this directory as it will allow
 you to access them from your favourite IDE on your local computer.
