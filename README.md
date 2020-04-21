@@ -10,7 +10,7 @@ The VM created will contain the following software:
 * Latest GDAL version available on [unbuntugis-unstable](https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable).
 * Latest MapServer version available on [unbuntugis-unstable](https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable).
 * Latest [GDAL python bindings](https://pypi.org/project/GDAL/) available via PYPI.
-* Latest ElasticSearch `7.x` version from ElasticSearch [APT respository](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo).
+* Latest Elasticsearch `7.x` version from Elasticsearch [APT respository](https://www.elastic.co/guide/en/Elasticsearch/reference/current/deb.html#deb-repo).
 
 ## Installation Guide
 ### Download Vagrant and VirtualBox
@@ -37,7 +37,7 @@ Modify the existing values to suit your needs based off of your existing
 hardware.
 
 **IMPORTANT: In many cases, 1024 MB of memory is insufficient
-for ElasticSearch to run properly in the VM. Please consider providing at
+for Elasticsearch to run properly in the VM. Please consider providing at
 minimum 2048 MB of memory to your VM**.
 #### Linux / Mac OS X
 Open up a Terminal and `cd` into the local directory you chose above.
@@ -49,10 +49,10 @@ Run `vagrant up`. This will start up the VM for the first time and run through
 the provisioning process.
 
 ## Usage
-### Accessing MapServer and ElasticSearch via your host computer
-Following the initial boot of your VM, both MapServer and ElasticSearch will
+### Accessing MapServer and Elasticsearch via your host computer
+Following the initial boot of your VM, both MapServer and Elasticsearch will
 be available via your browser on your host computer:
-* ElasticSearch: http://localhost:9201
+* Elasticsearch: http://localhost:9201
 * Mapserver: http://localhost:8888/cgi-bin/mapserv?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities
 ### Accessing your VM via SSH
 #### Linux / Mac OS X
