@@ -55,7 +55,7 @@ EOF
 	sudo /bin/systemctl enable elasticsearch.service
 	sudo echo "network.host: 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
 	sudo echo "http.port: 9200" >> /etc/elasticsearch/elasticsearch.yml
-	sudo echo "discovery.seed_hosts: ['127.0.0.1', '::1\']" >> /etc/elasticsearch/elasticsearch.yml
+	sudo echo "discovery.type: single-node" >> /etc/elasticsearch/elasticsearch.yml
 	sudo systemctl start elasticsearch.service
 	echo "*** Elasticsearch now available on host at http://localhost:9201 ****"
 	SHELL

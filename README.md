@@ -1,5 +1,5 @@
 # MSC Geospatial Development Environment
-This repository is used to managed to Vagrantfile used to create a quick
+This repository is used to manage the Vagrantfile used to create a quick
 development environment for students and MSC Geospatial and Open Data Systems
 (GODS) team members. We use [Vagrant](https://www.vagrantup.com/intro/index.html)
 and [VirtualBox](https://www.virtualbox.org/) to create a virtual
@@ -49,6 +49,9 @@ Open up a Terminal and `cd` into the local directory you chose above.
 Run `vagrant up`. This will start up the VM for the first time and run through
 the provisioning process.
 #### Windows
+You may need to enable VT-x in your computer's BIOS. If it is not enabled,
+VirtualBox will raise an error during the next step.
+
 Using the `Command Prompt` navigate to the local directory you chose above.
 Run `vagrant up`. This will start up the VM for the first time and run through
 the provisioning process.
