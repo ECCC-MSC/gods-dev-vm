@@ -35,7 +35,7 @@ config.vm.provision "shell", inline: <<-SHELL
 	apt-get install -y apache2 apache2-bin apache2-utils cgi-mapserver mapserver-bin mapserver-doc python-mapscript
 	a2enmod cgi fcgid
 	echo "*** setting Apache default configuration for mapserver ***"
-	cat >> /etc/apache2/sites-available/000-default.conf <<EOF
+	grep -qxF 'ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/' /etc/apache2/sites-available/000-default.conf || cat >> /etc/apache2/sites-available/000-default.conf <<EOF
 	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
 		<Directory "/usr/lib/cgi-bin/">
 		AllowOverride All
@@ -53,9 +53,9 @@ EOF
 	apt-get update && apt-get install elasticsearch
 	sudo /bin/systemctl daemon-reload
 	sudo /bin/systemctl enable elasticsearch.service
-	sudo echo "network.host: 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
-	sudo echo "http.port: 9200" >> /etc/elasticsearch/elasticsearch.yml
-	sudo echo "discovery.type: single-node" >> /etc/elasticsearch/elasticsearch.yml
+	grep -qxF 'network.host: 0.0.0.0' /etc/elasticsearch/elasticsearch.yml || echo 'network.host: 0.0.0.0' >> /etc/elasticsearch/elasticsearch.yml
+	grep -qxF 'http.port: 9200' /etc/elasticsearch/elasticsearch.yml || echo 'http.port: 9200' >> /etc/elasticsearch/elasticsearch.yml
+	grep -qxF 'discovery.type: single-node' /etc/elasticsearch/elasticsearch.yml || echo 'discovery.type: single-node' >> /etc/elasticsearch/elasticsearch.yml
 	sudo systemctl start elasticsearch.service
 	echo "*** Elasticsearch now available on host at http://localhost:9201 ****"
 	SHELL
