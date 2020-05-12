@@ -5,6 +5,7 @@ Vagrant.configure("2") do |config|
 	config.vm.box_version = "20200416.0.0 "
 	config.vm.network "forwarded_port", guest: 80, host: 8888, id: "apache"
 	config.vm.network "forwarded_port", guest: 9200, host: 9201, id: "elasticsearch"
+	config.vm.network "forwarded_port", guest: 6379, host: 6380, id: "redis"
 	config.vm.synced_folder "shared/", "/home/vagrant/shared", create: true
 	config.vm.provider "virtualbox" do |v|
 	        v.name = "msc-gods-dev-vm"
@@ -49,7 +50,7 @@ EOF
 	echo "*** installing and setting up elasticsearch ***"
 	wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 	apt-get install apt-transport-https
-	echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+	grep -qxF 'deb https://artifacts.elastic.co/packages/7.x/apt stable main' /etc/apt/sources.list.d/elastic-7.x.list || echo 'deb https://artifacts.elastic.co/packages/7.x/apt stable main' >> /etc/apt/sources.list.d/elastic-7.x.list
 	apt-get update && apt-get install elasticsearch
 	sudo /bin/systemctl daemon-reload
 	sudo /bin/systemctl enable elasticsearch.service
@@ -58,5 +59,10 @@ EOF
 	grep -qxF 'discovery.type: single-node' /etc/elasticsearch/elasticsearch.yml || echo 'discovery.type: single-node' >> /etc/elasticsearch/elasticsearch.yml
 	sudo systemctl start elasticsearch.service
 	echo "*** Elasticsearch now available on host at http://localhost:9201 ****"
+	echo "*** installing and setting up redis ****"
+	apt-get install -y redis-server
+	sudo sed -i 's/supervised no/supervised systemd/' /etc/redis/redis.conf
+	sudo systemctl restart redis.service
+	echo "*** redis now available on host at http://localhost:6380 ****"
 	SHELL
 end
